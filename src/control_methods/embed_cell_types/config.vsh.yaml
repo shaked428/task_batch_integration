@@ -1,9 +1,9 @@
 __merge__: /src/api/comp_control_method.yaml
-name: celltype_feature
-label: Random feature by cell type
-summary: Features are randomized within celltype labels
-description: Features are randomized within celltype labels
-namespace: batch_integration/control_methods/random_integration
+name: embed_by_cell_type
+label: Embed cell types
+summary: Cells are embedded as a one-hot encoding of celltype labels
+description: Cells are embedded as a one-hot encoding of celltype labels
+
 info:
   preferred_normalization: log_cp10k
 resources:

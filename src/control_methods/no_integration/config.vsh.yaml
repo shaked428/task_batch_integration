@@ -1,9 +1,9 @@
 __merge__: /src/api/comp_control_method.yaml
-name: global_embed
+name: no_integration
 label: No integration
-summary: Cells are embedded by PCA on the unintegrated data
-description: Cells are embedded by PCA on the unintegrated data
-namespace: batch_integration/control_methods/no_integration
+summary: Original feature space is not modified
+description: Original feature space is not modified
+
 info:
   preferred_normalization: log_cp10k
 resources:

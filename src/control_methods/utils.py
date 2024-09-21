@@ -34,9 +34,10 @@ def _randomize_graph(adata, partition=None, neighbors_key="neighbors"):
         adata.obsp[knn_map["connectivities_key"]],
     )
     new_idx = _randomize_features(np.arange(distances.shape[0]), partition=partition)
-    new_distances = distances[new_idx][:, new_idx]
-    new_connectivities = connectivities[new_idx][:, new_idx]
-    return new_distances, new_connectivities
+    adata.obsp["distances"] = distances[new_idx][:, new_idx]
+    adata.obsp["connectivities"] = connectivities[new_idx][:, new_idx]
+    _set_uns(adata, neighbors_key)
+    return adata
 
 
 def _perfect_embedding(partition, jitter=0.01):

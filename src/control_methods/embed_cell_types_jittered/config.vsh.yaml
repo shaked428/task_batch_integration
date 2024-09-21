@@ -1,11 +1,11 @@
 __merge__: /src/api/comp_control_method.yaml
-name: celltype_jitter_embed
+name: embed_cell_types_jittered
 label: Perfect embedding by celltype with jitter
 summary: Cells are embedded as a one-hot encoding of celltype labels, with a small
   amount of random noise added to the embedding
 description: Cells are embedded as a one-hot encoding of celltype labels, with a small
   amount of random noise added to the embedding
-namespace: batch_integration/control_methods/perfect_integration
+
 info:
   preferred_normalization: log_cp10k
 arguments:

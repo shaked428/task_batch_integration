@@ -3,7 +3,7 @@ name: batch_embed
 label: No integration by Batch
 summary: Cells are embedded by computing PCA independently on each batch
 description: Cells are embedded by computing PCA independently on each batch
-namespace: batch_integration/control_methods/no_integration
+
 info:
   preferred_normalization: log_cp10k
 resources:
