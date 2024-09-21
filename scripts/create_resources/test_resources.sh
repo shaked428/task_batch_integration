@@ -20,18 +20,23 @@ viash run src/process_dataset/config.vsh.yaml -- \
   --output_solution "$DATASET_DIR/cxg_mouse_pancreas_atlas/solution.h5ad"
 
 # run one method
-viash run src/methods/knn/config.vsh.yaml -- \
-    --input_train $DATASET_DIR/cxg_mouse_pancreas_atlas/train.h5ad \
-    --input_test $DATASET_DIR/cxg_mouse_pancreas_atlas/test.h5ad \
-    --output $DATASET_DIR/cxg_mouse_pancreas_atlas/prediction.h5ad
+viash run src/methods/combat/config.vsh.yaml -- \
+  --input $DATASET_DIR/cxg_mouse_pancreas_atlas/dataset.h5ad \
+  --output $DATASET_DIR/cxg_mouse_pancreas_atlas/integrated.h5ad
+
+# run transformer
+viash run src/transformers/transform/config.vsh.yaml -- \
+    --input $DATASET_DIR/cxg_mouse_pancreas_atlas/integrated.h5ad \
+    --output $DATASET_DIR/cxg_mouse_pancreas_atlas/integrated_full.h5ad
 
 # run one metric
 viash run src/metrics/accuracy/config.vsh.yaml -- \
-    --input_prediction $DATASET_DIR/cxg_mouse_pancreas_atlas/prediction.h5ad \
+    --input_prediction $DATASET_DIR/cxg_mouse_pancreas_atlas/integrated.h5ad \
     --input_solution $DATASET_DIR/cxg_mouse_pancreas_atlas/solution.h5ad \
     --output $DATASET_DIR/cxg_mouse_pancreas_atlas/score.h5ad
 
 # only run this if you have access to the openproblems-data bucket
 aws s3 sync --profile op \
-  "$DATASET_DIR" s3://openproblems-data/resources_test/task_batch_integration \
+  "resources_test/task_batch_integration" \
+  s3://openproblems-data/resources_test/task_batch_integration \
   --delete --dryrun

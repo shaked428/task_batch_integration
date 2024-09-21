@@ -67,8 +67,10 @@ flowchart LR
   comp_control_method[/"Control method"/]
   comp_method[/"Method"/]
   comp_metric[/"Metric"/]
-  file_integrated("Integrated Dataset")
+  file_integrated("Integration")
   file_score("Score")
+  comp_transformer[/"Transform"/]
+  file_integrated_full("Transformed integration")
   file_common_dataset---comp_process_dataset
   comp_process_dataset-->file_dataset
   comp_process_dataset-->file_solution
@@ -79,7 +81,9 @@ flowchart LR
   comp_control_method-->file_integrated
   comp_method-->file_integrated
   comp_metric-->file_score
-  file_integrated---comp_metric
+  file_integrated---comp_transformer
+  comp_transformer-->file_integrated_full
+  file_integrated_full---comp_metric
 ```
 
 ## File format: Common Dataset
@@ -283,15 +287,15 @@ Arguments:
 
 <div class="small">
 
-| Name                 | Type   | Description                                    |
-|:---------------------|:-------|:-----------------------------------------------|
-| `--input_integrated` | `file` | An integrated AnnData dataset.                 |
-| `--input_solution`   | `file` | Uncensored dataset containing the true labels. |
-| `--output`           | `file` | (*Output*) Metric score file.                  |
+| Name | Type | Description |
+|:---|:---|:---|
+| `--input_integrated` | `file` | An integrated AnnData dataset with additional outputs. |
+| `--input_solution` | `file` | Uncensored dataset containing the true labels. |
+| `--output` | `file` | (*Output*) Metric score file. |
 
 </div>
 
-## File format: Integrated Dataset
+## File format: Integration
 
 An integrated AnnData dataset.
 
@@ -362,6 +366,69 @@ Data structure:
 | `uns["method_id"]` | `string` | A unique identifier for the method. |
 | `uns["metric_ids"]` | `string` | One or more unique metric identifiers. |
 | `uns["metric_values"]` | `double` | The metric values obtained for the given prediction. Must be of same length as ‘metric_ids’. |
+
+</div>
+
+## Component type: Transform
+
+Transform batch integration outputs where necessary
+
+Arguments:
+
+<div class="small">
+
+| Name | Type | Description |
+|:---|:---|:---|
+| `--input` | `file` | An integrated AnnData dataset. |
+| `--output` | `file` | (*Output*) An integrated AnnData dataset with additional outputs. |
+
+</div>
+
+## File format: Transformed integration
+
+An integrated AnnData dataset with additional outputs.
+
+Example file:
+`resources_test/task_batch_integration/cxg_mouse_pancreas_atlas/integrated_full.h5ad`
+
+Description:
+
+Must contain at least one of:
+
+- Feature: the corrected_counts layer
+- Embedding: the X_emb obsm
+- Graph: the connectivities and distances obsp
+
+The Graph should always be present, but the Feature and Embedding are
+optional.
+
+Format:
+
+<div class="small">
+
+    AnnData object
+     obsm: 'X_emb'
+     obsp: 'connectivities', 'distances'
+     layers: 'corrected_counts'
+     uns: 'dataset_id', 'normalization_id', 'dataset_organism', 'method_id', 'neighbors'
+
+</div>
+
+Data structure:
+
+<div class="small">
+
+| Slot | Type | Description |
+|:---|:---|:---|
+| `obsm["X_emb"]` | `double` | (*Optional*) Embedding output - 2D coordinate matrix. |
+| `obsp["connectivities"]` | `double` | Graph output - neighbor connectivities matrix. |
+| `obsp["distances"]` | `double` | Graph output - neighbor distances matrix. |
+| `layers["corrected_counts"]` | `double` | (*Optional*) Feature output - corrected counts. |
+| `uns["dataset_id"]` | `string` | A unique identifier for the dataset. |
+| `uns["normalization_id"]` | `string` | Which normalization was used. |
+| `uns["dataset_organism"]` | `string` | (*Optional*) The organism of the sample in the dataset. |
+| `uns["method_id"]` | `string` | A unique identifier for the method. |
+| `uns["neighbors"]` | `object` | Supplementary K nearest neighbors data. |
 
 </div>
 
