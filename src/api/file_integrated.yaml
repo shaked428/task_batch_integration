@@ -1,5 +1,5 @@
 type: file
-example: "resources_test/batch_integration/cxg_mouse_pancreas_atlas/integrated.h5ad"
+example: "resources_test/task_batch_integration/cxg_mouse_pancreas_atlas/integrated.h5ad"
 label: "Integrated Dataset"
 summary: An integrated AnnData dataset.
 description: |
@@ -50,4 +50,4 @@ info:
       - type: object
         name: neighbors
         description: Supplementary K nearest neighbors data.
-        required: true
+        required: false

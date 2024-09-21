@@ -156,7 +156,7 @@ Arguments:
 Unintegrated AnnData HDF5 file.
 
 Example file:
-`resources_test/batch_integration/cxg_mouse_pancreas_atlas/dataset.h5ad`
+`resources_test/task_batch_integration/cxg_mouse_pancreas_atlas/dataset.h5ad`
 
 Format:
 
@@ -200,7 +200,7 @@ Data structure:
 Uncensored dataset containing the true labels.
 
 Example file:
-`resources_test/batch_integration/cxg_mouse_pancreas_atlas/solution.h5ad`
+`resources_test/task_batch_integration/cxg_mouse_pancreas_atlas/solution.h5ad`
 
 Format:
 
@@ -296,7 +296,7 @@ Arguments:
 An integrated AnnData dataset.
 
 Example file:
-`resources_test/batch_integration/cxg_mouse_pancreas_atlas/integrated.h5ad`
+`resources_test/task_batch_integration/cxg_mouse_pancreas_atlas/integrated.h5ad`
 
 Description:
 
@@ -332,7 +332,7 @@ Data structure:
 | `uns["normalization_id"]` | `string` | Which normalization was used. |
 | `uns["dataset_organism"]` | `string` | (*Optional*) The organism of the sample in the dataset. |
 | `uns["method_id"]` | `string` | A unique identifier for the method. |
-| `uns["neighbors"]` | `object` | Supplementary K nearest neighbors data. |
+| `uns["neighbors"]` | `object` | (*Optional*) Supplementary K nearest neighbors data. |
 
 </div>
 
