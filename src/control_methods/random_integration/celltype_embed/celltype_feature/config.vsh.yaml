@@ -1,0 +1,21 @@
+__merge__: /src/api/comp_control_method.yaml
+name: celltype_feature
+label: Random feature by cell type
+summary: Features are randomized within celltype labels
+description: Features are randomized within celltype labels
+namespace: batch_integration/control_methods/random_integration
+info:
+  preferred_normalization: log_cp10k
+resources:
+  - type: python_script
+    path: script.py
+  - path: /src/utils/read_anndata_partial.py
+  - path: /src/control_methods/utils.py
+engines:
+  - type: docker
+    image: openproblems/base_python:1.0.0
+runners:
+  - type: executable
+  - type: nextflow
+    directives:
+      label: [midtime, lowmem, lowcpu]

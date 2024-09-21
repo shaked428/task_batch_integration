@@ -1,0 +1,22 @@
+__merge__: /src/api/comp_control_method.yaml
+name: global_graph
+label: No integration
+summary: kNN graph is built on the PCA of the unintegrated data
+description: Cells are embedded by PCA on the unintegrated data. A kNN graph is built
+  on this PCA.
+namespace: batch_integration/control_methods/no_integration
+info:
+  preferred_normalization: log_cp10k
+resources:
+  - type: python_script
+    path: script.py
+  - path: /src/utils/read_anndata_partial.py
+  - path: /src/control_methods/utils.py
+engines:
+  - type: docker
+    image: openproblems/base_python:1.0.0
+runners:
+  - type: executable
+  - type: nextflow
+    directives:
+      label: [midtime, lowmem, lowcpu]
