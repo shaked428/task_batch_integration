@@ -5,7 +5,7 @@ import bbknn
 
 ## VIASH START
 par = {
-    'input': 'resources_test/batch_integration/pancreas/unintegrated.h5ad',
+    'input': 'resources_test/task_batch_integration/cxg_mouse_pancreas_atlas/dataset.h5ad',
     'output': 'output.h5ad',
     'annoy_n_trees': 10,
     'neighbors_within_batch': 3,

@@ -4,7 +4,7 @@ from scvi.model import SCVI
 
 ## VIASH START
 par = {
-    'input': 'resources_test/batch_integration/pancreas/dataset.h5ad',
+    'input': 'resources_test/task_batch_integration/cxg_mouse_pancreas_atlas/dataset.h5ad',
     'output': 'output.h5ad',
     'n_hvg': 2000,
     'n_latent': 30,

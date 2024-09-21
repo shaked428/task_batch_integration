@@ -24,8 +24,7 @@ arguments:
 resources:
   - type: python_script
     path: script.py
-  - type: python_script
-    path: /src/utils/read_anndata_partial.py
+  - path: /src/utils/read_anndata_partial.py
 engines:
   - type: docker
     image: openproblems/base_python:1.0.0
