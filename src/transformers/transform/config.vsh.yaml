@@ -1,9 +1,14 @@
 __merge__: /src/api/comp_transformer.yaml
 name: transform
-label: Transform outputs
-summary: Transform batch integration outputs where necessary
+label: Transform
+summary: Check the output and transform to create additional output types
 description: |
-  Transform corrected feature output to an embedding, and an embedding to a graph output.
+  This component will:
+  
+    - Assert whether the input dataset and integrated dataset have the same shape.
+    - Reorder the integrated dataset to match the input dataset if needed.
+    - Transform the corrected feature output to an embedding.
+    - Transform an embedding to a graph output.
 resources:
   - type: python_script
     path: script.py

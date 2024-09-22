@@ -26,7 +26,9 @@ viash run src/methods/combat/config.vsh.yaml -- \
 
 # run transformer
 viash run src/transformers/transform/config.vsh.yaml -- \
-    --input $DATASET_DIR/cxg_mouse_pancreas_atlas/integrated.h5ad \
+    --input_integrated $DATASET_DIR/cxg_mouse_pancreas_atlas/integrated.h5ad \
+    --input_dataset $DATASET_DIR/cxg_mouse_pancreas_atlas/dataset.h5ad \
+    --expected_method_types feature \
     --output $DATASET_DIR/cxg_mouse_pancreas_atlas/integrated_full.h5ad
 
 # run one metric
