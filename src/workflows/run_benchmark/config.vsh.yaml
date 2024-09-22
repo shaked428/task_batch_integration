@@ -78,7 +78,7 @@ dependencies:
   - name: methods/scanvi
   - name: methods/scvi
   - name: metrics/asw_batch
-  - name: metrics/aws_label
+  - name: metrics/asw_label
   - name: metrics/cell_cycle_conservation
   - name: metrics/clustering_overlap
   - name: metrics/graph_connectivity
