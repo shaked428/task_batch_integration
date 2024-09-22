@@ -1,4 +1,4 @@
-namespace: transformers
+namespace: data_processors
 info:
   type: transformer
   type_info:
