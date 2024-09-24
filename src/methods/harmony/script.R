@@ -27,7 +27,7 @@ output <- anndata::AnnData(
   obs = adata$obs[, c()],
   var = adata$var[, c()],
   obsm = list(
-    X_emb = out,
+    X_emb = out
   ),
   uns = list(
     dataset_id = adata$uns[["dataset_id"]],
