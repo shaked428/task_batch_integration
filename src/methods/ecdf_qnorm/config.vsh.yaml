@@ -1,7 +1,7 @@
 __merge__: /src/api/comp_method.yaml
 
 name: ecdf_qnorm
-label: ecdfQnorm
+label: ecdf_qnorm
 summary: Data normalization based on ecdf and tiedranks.
 
 # A multi-line description of how this component works (required). Used
@@ -10,14 +10,14 @@ description: |
   ecdfQnorm is Data normalization based on ecdf and tiedranks.
   we normalize the data ...
   more text ...
-references:
-  doi: 10.1016/j.cell.2019.05.006 # this is the pyliger librery
+#references:
+#  doi: 10.1016/j.cell.2019.05.006 # this is the pyliger librery
 
-links:
-#  documentation: https://github.com/hofreelab/ecdfQnorm/#readme
-#  repository: https://github.com/hofreelab/ecdfQnorm/
-  documentation: https://github.com/welch-lab/pyliger # for test
-  repository: https://github.com/welch-lab/pyliger # for test
+#links:
+##  documentation: https://github.com/hofreelab/ecdfQnorm/#readme
+##  repository: https://github.com/hofreelab/ecdfQnorm/
+#  documentation: https://github.com/welch-lab/pyliger # for test
+#  repository: https://github.com/welch-lab/pyliger # for test
 
 
 

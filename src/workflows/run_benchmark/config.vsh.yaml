@@ -99,7 +99,7 @@ dependencies:
   - name: methods/mnnpy
   - name: methods/pyliger
   - name: methods/scalex
-  - name: methods/ecdfQnorm
+  - name: methods/ecdf_qnorm
   # - name: methods/scanorama
   # - name: methods/scanvi
   # - name: methods/scgpt_finetuned
