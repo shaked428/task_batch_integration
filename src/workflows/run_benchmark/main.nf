@@ -9,6 +9,7 @@ workflow auto {
 
 // construct list of methods and control methods
 methods = [
+  ecdfQnorm,
   embed_cell_types,
   embed_cell_types_jittered,
   no_integration,
@@ -19,29 +20,9 @@ methods = [
   batchelor_fastmnn,
   batchelor_mnn_correct,
   bbknn,
-  combat,
-  geneformer,
-  harmony,
-  harmonypy,
-  liger,
   mnnpy,
   pyliger,
   scalex,
-  scanorama,
-  scanvi,
-  scgpt_finetuned.run(
-    args: [model: file("s3://openproblems-work/cache/scGPT_human.zip")]
-  ),
-  scgpt_zeroshot.run(
-    args: [model: file("s3://openproblems-work/cache/scGPT_human.zip")]
-  ),
-  scimilarity.run(
-    args: [model: file("s3://openproblems-work/cache/scimilarity-model_v1.1.tar.gz")]
-  ),
-  scprint,
-  scvi,
-  uce.run(
-    args: [model: file("s3://openproblems-work/cache/uce-model-v5.zip")]
   )
 ]
 
