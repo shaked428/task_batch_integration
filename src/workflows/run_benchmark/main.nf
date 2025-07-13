@@ -9,7 +9,7 @@ workflow auto {
 
 // construct list of methods and control methods
 methods = [
-  ecdfQnorm,
+  ecdf_qnorm,
   embed_cell_types,
   embed_cell_types_jittered,
   no_integration,
@@ -22,8 +22,7 @@ methods = [
   bbknn,
   mnnpy,
   pyliger,
-  scalex,
-  )
+  scalex
 ]
 
 // construct list of metrics

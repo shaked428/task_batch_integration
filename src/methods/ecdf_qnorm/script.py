@@ -176,17 +176,19 @@ adata = read_anndata(
     uns='uns'
 )
 
-adata_normalize_matrix = ecdf_qnorm_genes(adata, batch_key=par['batch_key'])
+adata.X = ecdf_qnorm_genes(adata, batch_key=par['batch_key'])
 
 print("Write output AnnData to file", flush=True)
 output = ad.AnnData(
-    X=adata_normalize_matrix,
     obs=adata.obs.copy(),
     var=adata.var.copy(),
     uns={
         'dataset_id': adata.uns['dataset_id'],
         'normalization_id': adata.uns['normalization_id'],
         'method_id': meta['name'],
+    },
+    layers={
+        "corrected_counts": sparse.csr_matrix(adata.X)
     }
 )
 

@@ -33,6 +33,9 @@ arguments:
      default: "batch"
      description: the name of the batch key in the input data
 
+info:
+  method_types: [feature]
+  preferred_normalization: log_cp10k
 
 resources:
   # The script of your component (required)
