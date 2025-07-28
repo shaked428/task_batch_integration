@@ -2,7 +2,7 @@ viash_version: 0.9.4
 
 name: task_batch_integration
 organization: openproblems-bio
-version: dev
+version: build_main
 
 license: MIT
 keywords: [ "batch integration", "scRNA-seq" ]

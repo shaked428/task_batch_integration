@@ -17,9 +17,6 @@ methods = [
   shuffle_integration,
   shuffle_integration_by_batch,
   shuffle_integration_by_cell_type,
-  batchelor_fastmnn,
-  batchelor_mnn_correct,
-  bbknn,
   mnnpy,
   pyliger,
   scalex

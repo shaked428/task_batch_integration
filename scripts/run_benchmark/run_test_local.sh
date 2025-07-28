@@ -27,7 +27,7 @@ HERE
 
 nextflow run . \
   -main-script target/nextflow/workflows/run_benchmark/main.nf \
-  -profile docker \
+  -profile singularity \
   -resume \
   -entry auto \
   -c common/nextflow_helpers/labels_ci.config \
