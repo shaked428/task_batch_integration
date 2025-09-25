@@ -3,9 +3,13 @@
 /work
 /.nextflow*
 /target
+/tmp
+.idea
 
 .DS_Store
 /output
 trace-*
 .ipynb_checkpoints
 __pycache__
+.vscode/settings.json
+

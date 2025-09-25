@@ -21,19 +21,21 @@ RUN_ID="run_$(date +%Y-%m-%d_%H-%M-%S)"
 publish_dir="resources/results/${RUN_ID}"
 
 # write the parameters to file
+# input_states: resources_test/task_batch_integration/**/state.yaml
 cat > /tmp/params.yaml << HERE
-input_states: resources/datasets/**/state.yaml
+input_states: resources/task_batch_integration/state.yaml
 rename_keys: 'input_dataset:output_dataset;input_solution:output_solution'
 output_state: "state.yaml"
 publish_dir: "$publish_dir"
-settings: '{"methods_exclude": ["uce", "scgpt_finetuned"]}'
+settings: '{"methods_include": ["ecdf_qnorm"]}'
 HERE
 
+# settings: '{"methods_exclude": ["uce", "scgpt_finetuned"]}'
+
 # run the benchmark
-nextflow run openproblems-bio/task_batch_integration \
-  --revision build/main \
+nextflow run . \
   -main-script target/nextflow/workflows/run_benchmark/main.nf \
-  -profile docker \
+  -profile singularity \
   -resume \
   -entry auto \
   -c common/nextflow_helpers/labels_ci.config \
