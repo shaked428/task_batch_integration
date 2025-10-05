@@ -16,13 +16,7 @@ DATASET_DIR=resources/task_batch_integration
 # publish_dir: s3://openproblems-data/resources/task_batch_integration/datasets/
 # HERE
 
-cat > /tmp/params.yaml << 'HERE'
-input_states: $RAW_DATA/dkd/state.yaml
-rename_keys: 'input:output_dataset'
-output_state: 'state.yaml'
-settings: '{"output_dataset": "dataset.h5ad", "output_solution": "solution.h5ad"}'
-publish_dir: $DATASET_DIR/dkd
-HERE
+
 
 # tw launch https://github.com/openproblems-bio/task_batch_integration.git \
 #   --revision build/main \
@@ -36,12 +30,48 @@ HERE
 #   --labels task_batch_integration,process_datasets
 
 
+for dir in "$RAW_DATA"/*; do
+  if [ -d "$dir" ] && [ -f "$dir/state.yaml" ] && [ -f "$dir/dataset.h5ad" ]; then
+    id=$(basename "$dir")
+    
+    cat > /tmp/params.yaml << HERE
+input_states: $dir/state.yaml
+rename_keys: 'input:output_dataset'
+output_state: 'state.yaml'
+settings: '{"output_dataset": "dataset.h5ad", "output_solution": "solution.h5ad"}'
+publish_dir: $DATASET_DIR/$id
+HERE
 
-nextflow run . \
-  -main-script target/nextflow/workflows/process_datasets/main.nf \
-  -profile singularity \
-  -params-file /tmp/params.yaml \
-  --input $RAW_DATA/dkd/dataset.h5ad \
-  --entry-name auto \
-  --config common/nextflow_helpers/labels_ci.config \
-  --labels task_batch_integration,process_datasets
+    echo "Processing dataset: $id"
+
+    nextflow run . \
+      -main-script target/nextflow/workflows/process_datasets/main.nf \
+      -profile singularity \
+      -params-file /tmp/params.yaml \
+      --input "$dir/dataset.h5ad" \
+      --entry-name auto \
+      --config common/nextflow_helpers/labels_ci.config \
+      --labels task_batch_integration,process_datasets
+
+  else
+    echo "Skipping: $dir (missing state.yaml or dataset.h5ad)"
+  fi
+done
+
+
+# cat > /tmp/params.yaml << 'HERE'
+# input_states: $RAW_DATA/**/state.yaml
+# rename_keys: 'input:output_dataset'
+# output_state: 'state.yaml'
+# settings: '{"output_dataset": "dataset.h5ad", "output_solution": "solution.h5ad"}'
+# publish_dir: $DATASET_DIR/$id
+# HERE
+
+# nextflow run . \
+#   -main-script target/nextflow/workflows/process_datasets/main.nf \
+#   -profile singularity \
+#   -params-file /tmp/params.yaml \
+#   --input $RAW_DATA/dkd/dataset.h5ad \
+#   --entry-name auto \
+#   --config common/nextflow_helpers/labels_ci.config \
+#   --labels task_batch_integration,process_datasets

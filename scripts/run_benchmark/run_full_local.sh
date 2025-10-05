@@ -13,7 +13,6 @@ cd "$REPO_ROOT"
 
 set -e
 
-echo "Running benchmark on test data"
 echo "  Make sure to run 'scripts/project/build_all_docker_containers.sh'!"
 
 # generate a unique id
@@ -23,11 +22,11 @@ publish_dir="resources/results/${RUN_ID}"
 # write the parameters to file
 # input_states: resources_test/task_batch_integration/**/state.yaml
 cat > /tmp/params.yaml << HERE
-input_states: resources/task_batch_integration/state.yaml
+input_states: resources/task_batch_integration/gtex9/state.yaml
 rename_keys: 'input_dataset:output_dataset;input_solution:output_solution'
 output_state: "state.yaml"
 publish_dir: "$publish_dir"
-settings: '{"methods_include": ["ecdf_qnorm"]}'
+settings: '{"methods_include": ["ecdf_qnorm", "scanvi", "combat"]}'
 HERE
 
 # settings: '{"methods_exclude": ["uce", "scgpt_finetuned"]}'
